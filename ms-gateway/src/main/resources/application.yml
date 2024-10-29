@@ -1,0 +1,42 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: ms-gateway
+  cloud:
+    gateway:
+      routes:
+        -   id: ms-agencia-usuario
+            uri: lb://ms-agencia-usuario
+            predicates:
+              - Path=/api/msagenciausuario/**
+            filters:
+              - StripPrefix=2
+              - AuthFilter
+        -   id: ms-cliente-producto
+            uri: lb://ms-cliente-producto
+            predicates:
+              - Path=/api/msclienteproducto/**
+            filters:
+              - StripPrefix=2
+              - AuthFilter
+        -   id: ms-inventario-factura
+            uri: lb://ms-inventario-factura
+            predicates:
+              - Path=/api/msinventariofactura/**
+            filters:
+              - StripPrefix=2
+              - AuthFilter
+        -   id: ms-auth-service
+            uri: lb://ms-auth-service
+            predicates: Path=/api/msauthservice/**
+            filters: StripPrefix=2
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

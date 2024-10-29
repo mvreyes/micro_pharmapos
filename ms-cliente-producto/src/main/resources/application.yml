@@ -1,0 +1,19 @@
+server:
+  #port: ${PORT:${SERVER_PORT:0}}
+  port: 8002
+spring:
+  application:
+    name: ms-cliente-producto
+  config:
+    import: configserver:http://localhost:8085
+    name: ms-cliente-producto
+  profiles:
+    active: test
+
+springdoc:
+  api-docs:
+    enabled: true
+  paths-to-match: /clientes/**, /productos/**
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html

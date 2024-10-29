@@ -1,0 +1,19 @@
+server:
+  #port: ${PORT:${SERVER_PORT:0}}
+  port: 8003
+spring:
+  application:
+    name: ms-inventario-factura
+  config:
+    import: configserver:http://localhost:8085
+    name: ms-inventario-factura
+  profiles:
+    active: test
+
+springdoc:
+  api-docs:
+    enabled: true
+  paths-to-match: /facturas/**, /inventarios/**
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
