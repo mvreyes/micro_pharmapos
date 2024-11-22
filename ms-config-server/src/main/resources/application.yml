@@ -1,26 +1,25 @@
-server:
-  port: 8085
 spring:
   application:
-    name: ms-config-server
+    name: ms-cliente-producto
+  datasource:
+    dbcp2:
+      driver-class-name: org.postgresql.Driver
+    password: 123456
+    url: jdbc:postgresql://localhost:5432/ms_cliente_producto
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
   cloud:
     config:
-      server:
-        git:
-          uri: https://github.com/KevinVR14/config-server-agencia-usuario
-          repos:
-            ms-agencia-usuario:
-              uri: https://github.com/KevinVR14/config-server-agencia-usuario
-              clone-on-start: true
-              #username: KevinVR14
-              #password: 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
-            ms-cliente-producto:
-              uri: https://github.com/KevinVR14/config-server-cliente-producto
-              clone-on-start: true
-              #username: KevinVR14
-              #password: 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
-            ms-inventario-factura:
-              uri: https://github.com/KevinVR14/config-server-inventario-factura
-              clone-on-start: true
-              #username: KevinVR14
-              #password: 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
+      enabled: false  # Desactiva Spring Cloud Config si no lo necesitas
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

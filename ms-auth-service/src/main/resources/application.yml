@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-  name: ms-auth-service
+    name: ms-auth-service
 
 jwt:
   secret: secret
