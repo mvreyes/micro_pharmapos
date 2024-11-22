@@ -5,10 +5,8 @@ spring:
   application:
     name: ms-agencia-usuario
   config:
-    import: configserver:http://localhost:8085
+    import: optional:configserver:http://localhost:8085
     name: ms-agencia-usuario
-  profiles:
-    active: test
 
 springdoc:
   api-docs:

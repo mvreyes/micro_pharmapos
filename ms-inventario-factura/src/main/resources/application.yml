@@ -5,15 +5,25 @@ spring:
   application:
     name: ms-inventario-factura
   config:
-    import: configserver:http://localhost:8085
+    import: optional:configserver:http://localhost:8085
     name: ms-inventario-factura
-  profiles:
-    active: test
 
 springdoc:
   api-docs:
     enabled: true
-  paths-to-match: /facturas/**, /inventarios/**
+  paths-to-match: /facturas/**, /inventarios/**, /pedidos/**
   swagger-ui:
     enabled: true
     path: /doc/swagger-ui.html
+
+aws:
+  access:
+    key:
+      id:
+  region:
+  s3:
+    bucket:
+      name:
+  secret:
+    access:
+      key:
